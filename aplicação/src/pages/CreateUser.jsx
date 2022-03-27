@@ -10,6 +10,8 @@ function CreateUser(_props) {
     name: '',
   });
 
+  const [mes, setMes] = useState('')
+
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'email') {
       setInput({ ...input, email: value });
@@ -50,6 +52,7 @@ function CreateUser(_props) {
   const checkPassHasSpecialChar = () => {
     const { password } = input;
     const special = '!@#$%^&*()_-+={}[]:;/?>.<,|~`'.split('');
+
     const result = special.some((char) => password.includes(char));
 
     addStyleLi(result, '02');
@@ -94,9 +97,16 @@ function CreateUser(_props) {
     return checkPassword() || checkEmail() || checkName();
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetch(`/signup?email=${input.email}`)
+      .then(response => response.json())
+      .then(newWord => setMes(newWord))
+  }
+
   return (
     <div className='login-container'>
-    <form method='GET' className='login-form'>
+    <form method='GET' className='login-form' onSubmit={ handleSubmit }>
       <h1>Create New User</h1>
       <label htmlFor="">
         Escreva seu Nome:
@@ -137,6 +147,7 @@ function CreateUser(_props) {
       <button type='submit' disabled={ buttonEnabler() }>Criar Usuário</button>
       <p>Já possui uma conta? <Link to="/login">Venha fazer o seu login</Link></p>
     </form>
+    <h1>{ mes }</h1>
   </div>
   )
 }

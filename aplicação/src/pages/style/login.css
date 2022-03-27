@@ -67,7 +67,7 @@ ul {
 
 .ativo {
   color: #31a252;
-  list-style-image: url('../../../public/icon/icons8-cancelar.svg');
+  list-style-image: url('../../../public/icon/icons8-selecionado.svg');
   text-decoration:line-through;
 }
 
