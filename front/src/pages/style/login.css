@@ -31,10 +31,6 @@ ul {
   margin-top: 1.5vh;
 }
 
-li {
-  list-style-image: url('../../../public/icon/icons8-cancelar.svg');
-}
-
 .login-form {
   background-color: #ffffe5;
   border-radius: 5px;
@@ -71,6 +67,10 @@ li {
 
 .ativo {
   color: #31a252;
-  list-style-image: url('../../../public/icon/icons8-selecionado.svg');
+  list-style-image: url('../../../public/icon/icons8-cancelar.svg');
   text-decoration:line-through;
+}
+
+li {
+  list-style-image: url('../../../public/icon/icons8-cancelar.svg');
 }

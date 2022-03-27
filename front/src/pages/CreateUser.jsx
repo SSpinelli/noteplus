@@ -96,7 +96,7 @@ function CreateUser(_props) {
 
   return (
     <div className='login-container'>
-    <form action="" className='login-form'>
+    <form method='GET' className='login-form'>
       <h1>Create New User</h1>
       <label htmlFor="">
         Escreva seu Nome:
