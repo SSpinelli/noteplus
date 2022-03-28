@@ -10,7 +10,7 @@ function CreateUser(_props) {
     name: '',
   });
 
-  const [mes, setMes] = useState('')
+  const [mes, setMes] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'email') {
@@ -32,7 +32,7 @@ function CreateUser(_props) {
 
   const checkPassLenght = () => {
     const { password } = input;
-    const result = password.length > 4;
+    const result = password.length > 5;
 
     addStyleLi(result, '01');
 
@@ -99,7 +99,7 @@ function CreateUser(_props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch(`/signup?email=${input.email}`)
+    fetch(`/signup?name=${input.name}&email=${input.email}&password=${input.password}`)
       .then(response => response.json())
       .then(newWord => setMes(newWord))
   }
