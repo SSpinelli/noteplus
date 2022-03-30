@@ -10,7 +10,7 @@ function CreateUser(_props) {
     name: '',
   });
 
-  const [mes, setMes] = useState('');
+  const [status, setStatus] = useState({});
 
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'email') {
@@ -98,15 +98,23 @@ function CreateUser(_props) {
   }
 
   const handleSubmit = (event) => {
+    const { name, email, password } = input;
     event.preventDefault();
-    fetch(`/signup?name=${input.name}&email=${input.email}&password=${input.password}`)
+    fetch("/signup", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, password })
+    })
       .then(response => response.json())
-      .then(newWord => setMes(newWord))
+      .then(newWord => setStatus(newWord))
+      .catch((error) => console.error("Error:", error))
   }
 
   return (
     <div className='login-container'>
-    <form method='GET' className='login-form' onSubmit={ handleSubmit }>
+    <form method='POST' className='login-form' onSubmit={ handleSubmit }>
       <h1>Create New User</h1>
       <label htmlFor="">
         Escreva seu Nome:
@@ -145,9 +153,9 @@ function CreateUser(_props) {
       </ul>
       </label>
       <button type='submit' disabled={ buttonEnabler() }>Criar Usuário</button>
-      <p>Já possui uma conta? <Link to="/login">Venha fazer o seu login</Link></p>
+      <p>Já possui uma conta? <Link to="/">Venha fazer o seu login</Link></p>
+      <h1>{ status.message }</h1>
     </form>
-    <h1>{ mes }</h1>
   </div>
   )
 }

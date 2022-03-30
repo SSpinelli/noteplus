@@ -4,15 +4,13 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-const User = require('./models/userModel');
+const { getAll, createUser, deleteUser } = require('./controlers/userControler')
 
-app.get('/signup', (req, res) => {
-  const { name, email, password } = req.query;
+app.get('/home', getAll);
 
-  User.createUser(name, email, password);
-  // res.setHeader('Content-Type', 'aplication/json');
-  res.status(200).json('Usuário Cadastrado');
-});
+app.post('/signup', createUser);
+
+app.delete('/home/:id', deleteUser)
 
 app.listen(3001, () => {
   console.log('Express server is running on localhost:3001')

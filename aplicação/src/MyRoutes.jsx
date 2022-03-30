@@ -8,8 +8,8 @@ class MyRoutes extends React.Component {
   render() {
     return (
       <Routes>
-        <Route exact path='/' element={ <Home /> } />
-        <Route exact path='/login' element={ <Login /> } />
+        <Route exact path='/' element={ <Login /> } />
+        <Route exact path='/home' element={ <Home /> } />
         <Route exact path='/signup' element={ <CreateUser /> } />
       </Routes>
     )
